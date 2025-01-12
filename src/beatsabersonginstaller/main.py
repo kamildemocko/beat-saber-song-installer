@@ -1,8 +1,8 @@
 import argparse
 from pathlib import Path
 
-from steam_folders import SteamFolders
-from copier import Copier
+from beatsabersonginstaller.steam_folders import SteamFolders
+from  beatsabersonginstaller.copier import Copier
 
 
 def run():
