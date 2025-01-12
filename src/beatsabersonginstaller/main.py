@@ -1,15 +1,12 @@
-import argparse
 from pathlib import Path
 
+from beatsabersonginstaller.init import init
 from beatsabersonginstaller.steam_folders import SteamFolders
 from  beatsabersonginstaller.copier import Copier
 
 
 def run():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("path", type=str, help="the map zip path")
-
-    args = parser.parse_args()
+    args = init()
 
     print("Preparing to copy")
 
