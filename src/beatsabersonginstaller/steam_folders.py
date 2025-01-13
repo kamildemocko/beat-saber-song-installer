@@ -2,16 +2,19 @@ import re
 from pathlib import Path
 import winreg
 
+class SteamFolderError(Exception):
+    ...
+
 class SteamFolders:
     def __init__(self) -> None:
         try:
             hkey = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\WOW6432Node\Valve\Steam")
         except Exception as exc:
-            raise ValueError("cannot find Steam in registry") from exc
+            raise SteamFolderError("cannot find Steam in registry") from exc
 
         install_path = Path(winreg.QueryValueEx(hkey, "InstallPath")[0])
         if not install_path.exists():
-            raise ValueError("cannot find Steam where it's supposted to be")
+            raise SteamFolderError("cannot find Steam where it's supposted to be")
 
         self.steamapps_paths: list[Path] = self._get_steamapps_paths(install_path)
 
@@ -34,9 +37,9 @@ class SteamFolders:
                 found.append(searched_folder)
 
         if len(found) == 0:
-            raise ValueError(f"{name} was not found in any library")
+            raise SteamFolderError(f"{name} was not found in any library")
         
         if len(found) != 1:
-            raise ValueError(f"{name} was found in multiple steamapps libraries")
+            raise SteamFolderError(f"{name} was found in multiple steamapps libraries")
         
         return found[0]
