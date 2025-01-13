@@ -2,27 +2,24 @@
 
 ## Description
 
-Beat Saber Song Installer is a Python tool designed to help you easily install custom songs into your Beat Saber game. It automates the process of copying song files into the appropriate game directory.
+Beat Saber Song Installer is a Python GUI app designed to help you easily install custom songs into your Beat Saber game. It automates the process of copying song files into the appropriate game directory.
 
 ## Features
 
 - Automatically detects Steam installation path for Beat Saber.
 - Copies custom song files into the correct game folder.
 - Ensures no duplicate song installations.
+- Can automatically delete song that was successfully imported.
 
 ## Requirements
 
 - Python 3.12 or higher
-- No extra libraries
+- tkinterdnd2 module
 
 ## Usage
 
-1. Run the script with the path to the song zip file as an argument:
-    ```sh
-    python src/beatsabersonginstaller/main.py "path_to_song_zip"
-    ```
-
-2. Drag and drop zip file into the main.py (or link of it)
+- Drag and drop zip file into the GUI window
+- Check the "Delete map after import" to delete imported file
 
 ## License
 
