@@ -11,6 +11,10 @@ Beat Saber Song Installer is a Python GUI app designed to help you easily instal
 - Ensures no duplicate song installations.
 - Can automatically delete song that was successfully imported.
 
+## Screenshots
+![image](https://github.com/user-attachments/assets/1c4115a1-c2a7-419b-a191-1324533a3942)
+
+
 ## Requirements
 
 - Python 3.12 or higher
