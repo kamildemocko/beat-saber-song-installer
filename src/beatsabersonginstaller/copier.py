@@ -1,7 +1,7 @@
 from pathlib import Path
 import zipfile
 
-from beatsabersonginstaller.steam_folders import SteamFolders
+from steam_folders import SteamFolders
 
 class Copier:
     def __init__(self, steam: SteamFolders) -> None:

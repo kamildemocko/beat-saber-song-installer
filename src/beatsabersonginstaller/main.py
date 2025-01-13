@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from beatsabersonginstaller.init import init
-from beatsabersonginstaller.steam_folders import SteamFolders
-from  beatsabersonginstaller.copier import Copier
+from init import init
+from steam_folders import SteamFolders
+from  copier import Copier
 
 
 def run():
