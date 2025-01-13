@@ -2,6 +2,7 @@ from typing import Callable
 from datetime import datetime as dt
 from pathlib import Path
 import tkinter as tk
+import webbrowser
 
 from tkinterdnd2 import TkinterDnD, DND_FILES
 
@@ -20,8 +21,7 @@ class Window(TkinterDnD.Tk):
         self.label = tk.Label(self, text="Drag & Drop the BeatSaber map here", font=("Arial", 16))
         self.label.pack(expand=True, fill=tk.BOTH, anchor=tk.CENTER)
 
-        self.delete = tk.Checkbutton(self, text="Delete file after import", variable=self._delete)
-        self.delete.pack(anchor=tk.W, padx=15, pady=10)
+        self._opt_frame()
 
         self.status = tk.Text(self, height=6)
         self.status.configure(state="disabled")
@@ -29,6 +29,24 @@ class Window(TkinterDnD.Tk):
 
         self.drop_target_register(DND_FILES)
         self.dnd_bind("<<Drop>>", self.on_file_drop)
+
+    def _opt_frame(self) -> None:
+        frame = tk.Frame(self)
+        frame.pack(fill=tk.X, padx=20, pady=10)
+
+        frame.columnconfigure(0, weight=1)
+        frame.columnconfigure(1, weight=1)
+
+        self.delete = tk.Checkbutton(frame, text="Delete map after import", variable=self._delete)
+        self.delete.grid(row=0, column=0, sticky=tk.W)
+        self.delete.focus()
+
+        self.link = tk.Label(frame, text="GitHub", fg="blue")
+        self.link.grid(row=0, column=1, sticky=tk.E)
+        self.link.bind(
+            "<Button-1>", 
+            lambda x: webbrowser.open("https://github.com/kamildemocko/beat-saber-song-installer")
+        )
 
     
     def on_file_drop(self, event: tk.Event) -> None:
