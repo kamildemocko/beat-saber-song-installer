@@ -14,13 +14,13 @@ class Copier:
         map_name = map_path.stem
 
         if not zipfile.is_zipfile(map_path):
-            raise CopyError(f"map {map_name} is not a valid map")
+            raise CopyError(f"map {map_name} is not a valid map!")
 
         beatsaber_folder: Path = self.steam.find_game_folder("Beat Saber")
 
         copy_to_folder = beatsaber_folder.joinpath(rf"Beat Saber_Data\CustomLevels\{map_name}")
         if copy_to_folder.exists():
-            raise CopyError(f"map {map_name} already exists")
+            raise CopyError(f"map {map_name} is already installed!")
         
         copy_to_folder.mkdir()
         with zipfile.ZipFile(map_path, "r") as file:

@@ -41,8 +41,18 @@ class Window(TkinterDnD.Tk):
         self.delete.grid(row=0, column=0, sticky=tk.W)
         self.delete.focus()
 
-        self.link = tk.Label(frame, text="GitHub", fg="blue")
+        self.link = tk.Label(frame, text="BeatSaver Maps", fg="blue")
         self.link.grid(row=0, column=1, sticky=tk.E)
+        self.link.bind(
+            "<Button-1>", 
+            lambda x: webbrowser.open("https://beatsaver.com")
+        )
+
+        self.link = tk.Label(frame, text=" | ")
+        self.link.grid(row=0, column=2, sticky=tk.E)
+
+        self.link = tk.Label(frame, text="GitHub", fg="blue")
+        self.link.grid(row=0, column=3, sticky=tk.E)
         self.link.bind(
             "<Button-1>", 
             lambda x: webbrowser.open("https://github.com/kamildemocko/beat-saber-song-installer")
@@ -55,7 +65,7 @@ class Window(TkinterDnD.Tk):
         try:
             self.status.configure(state="normal")
             self._callable(path, True if self._delete.get() else False)
-            self.status.insert("1.0", f"{self._get_time()} Map imported!\n")
+            self.status.insert("1.0", f"{self._get_time()} map {path.stem} imported!\n")
 
         except (CopyError, SteamFolderError) as exc:
             self.status.insert("1.0", f"{self._get_time()} {exc}\n")
